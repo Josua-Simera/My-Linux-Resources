@@ -1,0 +1,75 @@
+============================================ For Ubuntu =============================================================
+This process is tailored for Jetson Nano.
+
+Followed this guide for gstreamer: https://github.com/BrianOfrim/gstreamer-pyspin-src
+
+-Download spinnaker SDK for ARM  - https://meta.box.lenovo.com/v/link/view/a1995795ffba47dbbe45771477319cc3
+-	Place in new folder called "spinnaker_arm" in Documents and untar
+
+-Download Spinnaker Python (Python 3.6) - also from link above
+-	Place in another new folder called "spinnaker_python" in Documents and untar
+
+GStreamer install part:
+
+-	sudo apt-get update
+-	sudo apt-get -y install python3.6 python3-pip python3.6-dev python3.6-venv python-dev python3-dev
+-	sudo apt-get install -y git build-essential pkg-config libtool autoconf automake libgirepository1.0-dev gir1.2-gstreamer-1.0 libcairo2-dev python-gi-dev
+-	sudo apt-get install -y libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio python-gst-1.0 libgstreamer-plugins-base1.0-dev
+
+Install these dependencies first:
+-	pip3 install -U wheel pip? setuptools Cython
+-	pip3 install -r requirements.txt
+
+Follow the "README" in untarred spinnaker_arm folder
+-	Install all the dependencies for Ubuntu as per the README
+- 	sh install_spinnaker_arm.sh
+-	follow all prompts and steps
+
+Follow the "README" in untarred spinnaker_python folder
+-	Ensure the Python Spinnaker version matches the Spinnaker Arm version previously installed
+	-	pip3 install -U wheel pip
+	-	pip3 install --user spinnaker_python-1.x.x.x-cp36-cp36m-linux_x86_64.whl 
+	-	python3 then type 'import PySpin' # should take a few seconds, then exit silently
+
+Tell GStreamer where our plugin is located:
+-	export GST_PLUGIN_PATH=$GST_PLUGIN_PATH:/???
+
+-	Perform udev rules setup as described at the bottom of this file
+
+-	Reboot machine
+
+-	Connect USB 3 camera, test with PySpin Script
+
+++++++++++++++++++++++++++++++
+-	Install Python 3.# version if system version is not compatible. If N/A, skip this step:
+	-	sudo apt install software-properties-common
+	-	sudo apt-add-repository ppa:deadsnakes/ppa
+	-	sudo apt update
+	-	sudo apt install python3.#-dev
+
+-	To install pip 3 for a different version of Python3, download the get-pip.py file
+	-	sudo apt install curl
+	-	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	-	sudo python3.7 get-pip.py
+	-	#sudo python3.7 -m pip install (specific package into that version of python)
+	-	#sudo apt-get install python3-pip (installs pip3 for default version of python, but not alternative python)
+++++++++++++++++++++++++++++++
+
+
+#########################################	Setting up rc.local to perform rule/link echos at startup	#########################################
+
+sudo nano/gedit /etc/rc.local
+
+for example in the case of changing USBfs memory:
+
+sh -c 'echo 1000 > /sys/module/usbcore/parameter/usbfs_memory_mb'
+
+exit 0
+
+
+#########################################	Changing and accessing udev rules	#########################################
+
+Make sure the udev rules file is present in both directories below:
+cd /etc/udev/rules.d
+cd /lib/udev/rules.d
+

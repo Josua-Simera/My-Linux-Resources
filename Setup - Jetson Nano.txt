@@ -1,0 +1,61 @@
+nVidia Jetson Docs:
+
+https://docs.nvidia.com/jetson/l4t/index.html#page/Tegra%2520Linux%2520Driver%2520Package%2520Development%2520Guide%2Fintroduction.html
+
+-	Configure Ubuntu on Jetson to not prompt for password on sudo:
+	-	sudo gedit -w /etc/sudoers
+	-	add "NOPASSWD:" on all lines ex: "ALL=(ALL:ALL) NOPASSWD:ALL"
+
+Following this link for setup on USB boot:
+
+-	Follow Getting Started guide for Jetson to get OS image on to SD card
+	-	Once booted into new OS, follow guide linked below
+	-	Don't sudo apt update/upgrade yet, only after OS is on SSD, and first remove unwanted software packages
+
+-	https://www.jetsonhacks.com/2019/09/17/jetson-nano-run-from-usb-drive/
+
+-	Grab following folder from Github
+	-	git clone https://github.com/JetsonHacksNano/rootOnUSB
+	-	cd rootOnUSB
+
+-	Build the initramfs with USB support, so that USB is available early in the boot process.
+	-	sudo ./addUSBToInitramfs.sh
+
+- 	Use the Disks application in ubuntu on the Jetson to format the SSD, it has to be ext4 format, NTFS won't work
+
+-	Make sure the newly formated SSD is mounted on the system
+	-	double click on the disk in the left toolbar
+	-	In "Disks" utility, check where the disk is mounted (/media/...)
+
+-	Now run the copy shell script and specify the path to the SSD
+	-	sudo ./copyRootToUSB.sh -p /media/pathtodisk (OR /dev/sda, but didn't work for me)
+
+-	In new terminal, navigate to current OS (SD card) boot directory
+	-	cd /boot/extlinux
+
+-	Create backup of file:
+	-	sudo cp extlinux.conf extlinux.conf.original 
+
+-	in /rootOnUSB/ directory, run to get SSD UUID and generate command to point to root
+	-	sudo ./diskUUID.sh 
+
+-	Edit configuration file with text editor
+	-	sudo gedit extlinux.conf
+	-	copy boot sequence (from LABEL onwards)
+	-	rename copied sequence "sdcard" (replacing "primary")
+
+-	configure new boot sequence to include USB driver
+	-	INITRD /boot/initrd-xusb.img
+	-	copy boot arguments from terminal in previous step (replacing APPEND onwards)
+	-	 Save file and close, check if changes were accepted
+
+-	Now shutdown, power cycle, and start up waiting for moment of truth
+
+-	From now on, the system only boots up with both SD Card and SSD connected
+
+
+#########################################	Jetson Specific Commands			#########################################
+
+
+-	View Jetson power mode
+	-	sudo /usr/sbin/nvpmodel -q

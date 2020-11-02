@@ -1,0 +1,49 @@
+============================================ For Raspberry Pi =============================================================
+
+These instructions are specficially simplified for the beta release of Raspi OS 64 bit which comes standard with Python3.7
+
+-	Download/copy spinnaker SDK for ARM - https://meta.box.lenovo.com/v/link/view/a1995795ffba47dbbe45771477319cc3
+	-	Place in new folder called "spinnaker_arm" in Documents
+	-	tar xfv in the folder
+
+-	Download/copy Spinnaker Python - https://meta.box.lenovo.com/v/link/view/a1995795ffba47dbbe45771477319cc3
+	-	For this test the python 3.7 version is downloaded
+	-	Place in another new folder called "Spinnaker_Python" in Documents
+	-	tar xfv in the folder
+
+-	Perform steps on page 4 of "Spinnaker ARM" pdf document, view README for more info
+	- 	sh install_spinnaker_arm.sh
+	-	follow all prompts and steps	
+	-	restart board
+
+-	Create a new Spinnaker_Python folder and untar the spinnaker python there (tar xvfz spinnaker....)
+	-	remember to open virtual env again
+
+- 	Follow the "README" text in the Spinnaker_Python folder for Linux
+	-	Ensure the Python Spinnaker version matches the Spinnark Arm version previously installed
+	-	Install the wheel site wide for Python3.7 from the Python_Spinnaker folder	
+		-	pip install spinnaker....whl
+	-	python3 then type 'import PySpin' # should take a few seconds, then exit silently
+
+-	Connect USB 3 camera
+
+-	Copy a python script from the examples folder and run it
+	-	sudo python3 PythonScript.py
+
+#########################################	Setting up rc.local to perform rule/link echos at startup	#########################################
+
+sudo nano/gedit /etc/rc.local
+
+for example in the case of changing USBfs memory:
+
+sh -c 'echo 1000 > /sys/module/usbcore/parameter/usbfs_memory_mb'
+
+exit 0
+
+
+#########################################	Changing and accessing udev rules	#########################################
+
+Make sure the udev rules file is present in both directories below:
+cd /etc/udev/rules.d
+cd /lib/udev/rules.d
+
