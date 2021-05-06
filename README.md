@@ -2,11 +2,11 @@
 This is where I store all my Linux knowledge, tips and tricks accrued over the years
 
 #	Find RPi IP address for lan and wifi:
-sudo apt install net-tools
-ifconfig eth0 | grep inet | awk '{ print $2 }'
-ifconfig wlan0 | grep inet | awk '{ print $2 }'
+	sudo apt install net-tools
+	ifconfig eth0 | grep inet | awk '{ print $2 }'
+	ifconfig wlan0 | grep inet | awk '{ print $2 }'
 
-#########################################	Stop asking for sudo Password		#########################################
+#	Stop asking for sudo Password
 
 sudo visudo
 
