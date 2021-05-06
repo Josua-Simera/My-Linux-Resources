@@ -10,26 +10,25 @@ This is where I store all my Linux knowledge, tips and tricks accrued over the y
 	sudo visudo
  then append "NOPASSWD:ALL" to the end of each line where "ALL" is present
 
-#	Python Version Control
+#####################  Python Version Control  #####################
 
 # List all versions of python:
 	ls /usr/bin/python*
 
 #	Install a specific version of python:
-sudo apt install software-properties-common
-sudo apt-add-repository ppa:deadsnakes/ppa
-sudo apt-get update
-sudo apt-get install python#.#
+	sudo apt install software-properties-common
+	sudo apt-add-repository ppa:deadsnakes/ppa
+	sudo apt-get update
+	sudo apt-get install python#.#
 
-#	Set the default version of python to a specific version when "python" is used (this may break apt-get for system updates
-#	so switch back to main python version after installing specific package)
-sudo update-alternatives --list python
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 2
-sudo update-alternatives --config python
-sudo update-alternatives --remove python /usr/bin/python2.7
+ Set the default version of python to a specific version when "python" is used (this may break apt-get for system updates so switch back to main python version after installing specific package)
+	sudo update-alternatives --list python
+	sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
+	sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 2
+	sudo update-alternatives --config python
+	sudo update-alternatives --remove python /usr/bin/python2.7
 
-#	Remove python versions:
+# Remove python versions:
 sudo apt-get remove --purge python#.#
 
 #########################################	Installing of various packages		#########################################
