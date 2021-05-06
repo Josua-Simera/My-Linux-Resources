@@ -2,6 +2,7 @@
 This is where I store all my Linux knowledge, tips and tricks accrued over the years
 
 **Find RPi IP address for lan and wifi:**
+
 	sudo apt install net-tools
 	ifconfig eth0 | grep inet | awk '{ print $2 }'
 	ifconfig wlan0 | grep inet | awk '{ print $2 }'
@@ -13,14 +14,18 @@ This is where I store all my Linux knowledge, tips and tricks accrued over the y
 # Python Version Control  
 
 **List all versions of python:**
+
 	ls /usr/bin/python*
 
 **Install a specific version of python:**
+	
 	sudo apt install software-properties-common
 	sudo apt-add-repository ppa:deadsnakes/ppa
 	sudo apt-get update
 	sudo apt-get install python#.#
+	
 Set the default version of python to a specific version when "python" is used (this may break apt-get for system updates so switch back to main python version after installing specific package)
+	
 	sudo update-alternatives --list python
 	sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
 	sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 2
@@ -28,16 +33,19 @@ Set the default version of python to a specific version when "python" is used (t
 	sudo update-alternatives --remove python /usr/bin/python2.7
 
 **Remove python versions:**
+	
 	sudo apt-get remove --purge python#.#
 
 # Installing of various packages
 
 **For Ubuntu:**
+	
 	sudo apt install openssh-server
 	sudo dpkg-reconfigure openssh-server
 
 **Check Ubuntu version:**
-lsb_release -a
+
+	lsb_release -a
 
 #	Install pip3 for Python3:
 sudo apt-get install python3-pip
