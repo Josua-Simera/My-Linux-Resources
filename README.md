@@ -105,119 +105,156 @@ Awesome guide here: https://realpython.com/python-virtual-environments-a-primer/
 	mv -r /home/swapnil/Documents/cio/stories /media/file/
 	mv -r /home/swapnil/Documents/cio/stories/* /media/file/stories/
 
-#########################################	Storage and Harddrives			#########################################
+# Storage and Harddrives
 
-#	Mount and access flash drive:
-lsusb -t					(Check specs of drive connected, UASP - Driver = uas)
-sudo fdisk -l 					(see all drives, USB usually /dev/sda1)
-sudo mkdir /media/USB 				(create mount point with name USB)
-sudo mount /dev/sda1 /media/USB			(to mount device, can now be acess via /media/)
-sudo umount /dev/sda1
-sudo umount /media/USB
+**Mount and access flash drive:**
+Check specs of drive connected, UASP - Driver = uas
 
-#	Benchmark storage write/read speed:
-curl https://raw.githubusercontent.com/geerlingguy/raspberry-pi-dramble/master/setup/benchmarks/microsd-benchmarks.sh | sudo bash
+	lsusb -t					
+see all drives, USB usually /dev/sda1
+	
+	sudo fdisk -l 					
+create mount point with name USB
 
-#	add a line to your /boot/config.txt to stop pollong for SD card:
-dtoverlay=sdtweak,poll_once
+	sudo mkdir /media/USB 				
+to mount device, can now be acess via /media/
+
+	sudo mount /dev/sda1 /media/USB		
+	
+	sudo umount /dev/sda1
+	sudo umount /media/USB
+
+**Benchmark storage write/read speed:**
+
+	curl https://raw.githubusercontent.com/geerlingguy/raspberry-pi-dramble/master/setup/benchmarks/microsd-benchmarks.sh | sudo bash
+
+**add a line to your /boot/config.txt to stop pollong for SD card:**
+
+	dtoverlay=sdtweak,poll_once
 
 
-#########################################	Setting up remote access on Buster 64 bit	#########################################
+# Setting up remote access on Buster 64 bit
 
-Follow this guide:	https://github.com/raspberrypi/Raspberry-Pi-OS-64bit/issues/3#issuecomment-636544190
+Follow this guide: https://github.com/raspberrypi/Raspberry-Pi-OS-64bit/issues/3#issuecomment-636544190
 
-sudo apt-get install x11vnc
-sudo x11vnc -storepasswd yourVNCpasswordHERE /etc/x11vnc.pass
-sudo nano /etc/systemd/system/x11vnc.service (edit according to link above)
+	sudo apt-get install x11vnc
+	sudo x11vnc -storepasswd yourVNCpasswordHERE /etc/x11vnc.pass
+	sudo nano /etc/systemd/system/x11vnc.service (edit according to link above)
 
-sudo systemctl daemon-reload
-sudo systemctl start x11vnc
+	sudo systemctl daemon-reload
+	sudo systemctl start x11vnc
 
-sudo systemctl enable x11vnc
+	sudo systemctl enable x11vnc
 
 Set resolution in raspi-config
 
 check status of server:
-sudo systemctl status x11vnc
 
-#########################################	Setting up crontab start up shell script	#########################################
+	sudo systemctl status x11vnc
+
+# Setting up crontab start up shell script
 
 Following this tutorial: https://www.dexterindustries.com/howto/auto-run-python-programs-on-the-raspberry-pi/
 
--	Open crontab (don't use sudo on raspberry pi)
-	-	crontab -e
+Open crontab (don't use sudo on raspberry pi)
 
--	If above is not editable, change default edit:
-	-	export EDITOR=nano/gedit
+	crontab -e
 
--	add the python or shell script you want to run at reboot:
-	-	@reboot sh /home/pi/startup.sh &
+If above is not editable, change default edit:
 
--	Create a shell script at the location above with the same name
+	export EDITOR=nano/gedit
 
--	The first line of the shell script should be 
-	-	#!/bin/bash
-	-	followed by whatever else you would want to type into the terminal
+Add the python or shell script you want to run at reboot:
 
--	Can start a terminal and execture a command
-	-	lxterminal -e sudo python3 HW_Trigger.py
+	@reboot sh /home/pi/startup.sh &
 
--	Make the shell script executable by opening terminal and running:
-	-	sudo chmod +x /home/pi/startup.sh
+Create a shell script at the location above with the same name
+The first line of the shell script should be 
 
--	to kill python script running in backgroun:
-	-	pgrep -af python (finds all running python scrips and lists them)
-	-	sudo pkill -f HW_Trigger.py
+	#!/bin/bash
+
+followed by whatever else you would want to type into the terminal
+
+Can start a terminal and execture a command
+
+	lxterminal -e sudo python3 HW_Trigger.py
+
+Make the shell script executable by opening terminal and running:
+
+	sudo chmod +x /home/pi/startup.sh
+
+To kill python script running in backgroun:
+
+	pgrep -af python 
+finds all running python scrips and lists them
 	
-#########################################	Setting up a GUI-program to run at start up	#########################################
+	sudo pkill -f HW_Trigger.py
+	
+	
+# Setting up a GUI-program to run at start up	
 
 Note: Using crontab works really well to run background scripts at start, but it does not run program or script that requires a GUI to open. To do that, follow this guide: https://www.tomshardware.com/how-to/run-script-at-boot-raspberry-pi
 
--	Create a file called myapp.desktop
-	-	sudo nano /etc/xdg/autostart/myapp.desktop
+Create a file called myapp.desktop
 
--	Enter the following in the file:
-	-	[Desktop Entry]
-		Exec=/path/to/shellscript.sh
+	sudo nano /etc/xdg/autostart/myapp.desktop
 
-#########################################	Setting up Jetson or Rpi? to sync with custom NTP server	#########################################
--	Do NOT install NTP, in fact, purge NTP if already installed
-	-	sudo apt purge ntp
--	Check that timesyncd service is active:
-	-	timedatectl status
-	- 	timedatectl set-ntp on
--	Configure timesyncd.conf file, add IP address of NTP server in the file (the RUT router's IP in this case)
-	-	sudo gedit /etc/systemd/timesyncd.conf
-	-	NTP=192.168.1.227
--	Restart the service
-	-	systemctl restart systemd-timesyncd.service
-	-	enter password
--	Now, on fresh boot with ethernet cable connected, the Jetson/EPC should sync with the RUT router
+Enter the following in the file:
 
+	[Desktop Entry]
+	Exec=/path/to/shellscript.sh
 
-#########################################	Settig up SSH keys to transfer files	#########################################
+# Setting up Jetson or Rpi? to sync with custom NTP server
+Do NOT install NTP, in fact, purge NTP if already installed
 
--	Create an SSH key on the RPi which other Jetsons can use to transfer files: https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md
--	Check for previous SSH keys on the Raspberry Pi:
-	-	ls ~/.ssh
--	Generate new keys if necessary
-	-	ssh-keygen (press enter until finished)
--	Now, on the Jetson, from which you want to connect (or send files) to the Pi
-	-	ssh-copy-id pi@192.168.1.225
--	On the pi, to which you want to connect
-	-	ssh-copy-id blackfly@192.168.1.22#
+	sudo apt purge ntp
+Check that timesyncd service is active:
 
--	Now set up SCP to send files from Jetson to SSDs on RPi: https://www.raspberrypi.org/documentation/remote-access/ssh/scp.md
+	timedatectl status
+ 	timedatectl set-ntp on
+
+Configure timesyncd.conf file, add IP address of NTP server in the file (the RUT router's IP in this case)
+	
+	sudo gedit /etc/systemd/timesyncd.conf
+	NTP=192.168.1.227
+Restart the service
+
+	systemctl restart systemd-timesyncd.service
+	enter password
+Now, on fresh boot with ethernet cable connected, the Jetson/EPC should sync with the RUT router
 
 
-#########################################	Settig IPTables to allow port through firewall	#########################################
+# Settig up SSH keys to transfer files	
+
+Create an SSH key on the RPi which other Jetsons can use to transfer files: https://www.raspberrypi.org/documentation/remote-access/ssh/passwordless.md
+
+Check for previous SSH keys on the Raspberry Pi:
+
+	ls ~/.ssh
+Generate new keys if necessary
+
+	ssh-keygen (press enter until finished)
+Now, on the Jetson, from which you want to connect (or send files) to the Pi
+
+	ssh-copy-id pi@192.168.1.225
+On the pi, to which you want to connect
+
+	ssh-copy-id blackfly@192.168.1.22#
+
+Now set up SCP to send files from Jetson to SSDs on RPi: https://www.raspberrypi.org/documentation/remote-access/ssh/scp.md
 
 
--	Update IP table with new rule
-	-	sudo iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 5900  -j ACCEPT
--	install package iptables-persistent (will prompt to save current rules)
-	-	sudo apt-get install iptables-persistent	
--	Save new rules (if not saved during install)
-	-	sudo netfilter-persistent save
--	To check current rules:
-	-	sudo iptables -S
+# Settig IPTables to allow port through firewall
+
+Update IP table with new rule
+
+	sudo iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 5900  -j ACCEPT
+Install package iptables-persistent (will prompt to save current rules)
+
+	sudo apt-get install iptables-persistent	
+Save new rules (if not saved during install)
+
+	sudo netfilter-persistent save
+To check current rules:
+
+	sudo iptables -S
