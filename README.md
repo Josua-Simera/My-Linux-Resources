@@ -47,52 +47,62 @@ Set the default version of python to a specific version when "python" is used (t
 
 	lsb_release -a
 
-#	Install pip3 for Python3:
-sudo apt-get install python3-pip
+**Install pip3 specifically for Python3:**
 
-#	Install matplotlib for default version of system python
-pip install matplotlib
+	sudo apt-get install python3-pip
 
-#	To install pip 3 for a different version of Python3, download the get-pip.py file
-https://bootstrap.pypa.io/get-pip.py
-python3.7 get-pip.py
-sudo python3.7 -m pip install <package_name> #specific package into that version of python
+**To install pip 3 for a different version of Python3, download the get-pip.py file**
 
-#	Install GPIO packages on ubuntu:
-sudo python3.7 -m pip install RPi.GPIO	(https://sourceforge.net/p/raspberry-gpio-python/wiki/Examples/)
-#to install for specific version of python3.#, ensure update-alternative version is selected
+	https://bootstrap.pypa.io/get-pip.py
+	python3.7 get-pip.py
+	sudo python3.7 -m pip install <package_name> #specific package into that version of python
 
-#	Virtual Environments: Awesome guide here: https://realpython.com/python-virtual-environments-a-primer/
-sudo pip3 install virtualenv
-virtualenv -p /usr/bin/python#.# venv (to create virtual environment in that version of python)
-source /venv/bin/activate
+**Install matplotlib for default version of system python**
 
-#	INSTALL XUBUNTU DESKTOP:
-sudo apt-get install subuntu-desktop
+	pip install matplotlib
 
-#	Sart and stp display server and Xserver: (not working)
-sudo service lightdm stop
-sudo service lightdm start 
 
-#########################################	File Management in Terminal		#########################################
+**Install GPIO packages on ubuntu:**
+https://sourceforge.net/p/raspberry-gpio-python/wiki/Examples/
+	sudo python3.7 -m pip install RPi.GPIO	
 
-#	Remove files:
-rm -r /home/swapnil/Documents/cio/stories
-rm -r /home/swapnil/Documents/cio/stories/*
-sudo rm <filename> OR sudo rm *.jpg (all files with that extension)
+To install for specific version of python3.#, ensure update-alternative version is selected
 
-#	Make a new folder:
-mkdir -p /home/swapnil/Downloads/cio/stories ('p' creates parent and child directories, otherwise just mkdir)
+**Virtual Environments:**
+Awesome guide here: https://realpython.com/python-virtual-environments-a-primer/
 
-#	Copy folder:
-/home/ubuntu/Spinnaker_ARM
-cp -r /path_of_current_folder /path_of_destination
-cp -r /home/swapnil/Documents/cio/stories /media/file/
-cp -r /home/swapnil/Documents/cio/stories/* /media/file/stories/ (the * copies the contents of the folder, not the whole folder)
+	sudo pip3 install virtualenv
+	virtualenv -p /usr/bin/python#.# venv (to create virtual environment in that version of python)
+	source /venv/bin/activate
 
-#	Move folder:
-mv -r /home/swapnil/Documents/cio/stories /media/file/
-mv -r /home/swapnil/Documents/cio/stories/* /media/file/stories/
+**Install Xubuntu Desktop on Pi**
+
+	sudo apt-get install subuntu-desktop
+
+# File Management in Terminal
+
+**Remove files:**
+
+	rm -r /home/swapnil/Documents/cio/stories
+	rm -r /home/swapnil/Documents/cio/stories/*
+	sudo rm <filename> OR sudo rm *.jpg (all files with that extension)
+
+**Make a new folder:**
+
+	mkdir -p /home/swapnil/Downloads/cio/stories 
+	
+('p' creates parent and child directories, otherwise just mkdir)
+
+**Copy folder:**
+
+	cp -r /path_of_current_folder /path_of_destination
+	cp -r /home/swapnil/Documents/cio/stories /media/file/
+	cp -r /home/swapnil/Documents/cio/stories/* /media/file/stories/ (the * copies the contents of the folder, not the whole folder)
+
+**Move folder:**
+
+	mv -r /home/swapnil/Documents/cio/stories /media/file/
+	mv -r /home/swapnil/Documents/cio/stories/* /media/file/stories/
 
 #########################################	Storage and Harddrives			#########################################
 
