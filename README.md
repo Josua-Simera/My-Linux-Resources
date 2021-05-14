@@ -64,6 +64,7 @@ Set the default version of python to a specific version when "python" is used (t
 
 **Install GPIO packages on ubuntu:**
 https://sourceforge.net/p/raspberry-gpio-python/wiki/Examples/
+
 	sudo python3.7 -m pip install RPi.GPIO	
 
 To install for specific version of python3.#, ensure update-alternative version is selected
