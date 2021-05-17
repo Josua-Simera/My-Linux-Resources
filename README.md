@@ -258,3 +258,41 @@ Save new rules (if not saved during install)
 To check current rules:
 
 	sudo iptables -S
+	
+	
+	
+# Git commands
+
+	git checkout main
+	git clone
+	git status
+	
+Get all branch info
+	
+	git branch -a
+	
+Create new branch
+	
+	git checkout -b brance_name
+	
+Add an untracked directory or file 
+	
+	git add directory/file
+
+Commit branch 
+
+	git commit -m'some comment'
+
+Push branch to remote git
+	
+	git push origin branch_name
+	
+Pull branch from remote git
+
+	git pull 
+	
+	git log
+	
+Choose a commit hash and copy, then
+
+	git checkout hash#
