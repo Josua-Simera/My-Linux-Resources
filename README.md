@@ -263,36 +263,50 @@ To check current rules:
 	
 # Git commands
 
+The git checkout command is used to switch between branches in a repository
+	
 	git checkout main
+	
+Clone the main repo that is currently checked out on to your local system
+	
 	git clone
+
+Get some information about your currently local repo
+	
 	git status
 	
-Get all branch info
+Get infor about all the branches that currently exist
 	
 	git branch -a
 	
-Create new branch
+Create new branch from the main repo that was previously cloned
 	
 	git checkout -b brance_name
 	
-Add an untracked directory or file 
+Once changes have been made to a file/directory, they are untracked. Add an untracked file/directory so that it is also updated when the branch is commited
 	
 	git add directory/file
 
-Commit branch 
+Commit the changes to the tracked files in the branch you are currently working on. Each commit is a local "save point" in time that can easily be reverted back to
 
 	git commit -m'some comment'
 
-Push branch to remote git
+After a commit, Push branch to remote git to update in the cloud
 	
 	git push origin branch_name
 	
-Pull branch from remote git
+Pull branch from remote git (wanneer sal mens nou weer dit doen?)
 
-	git pull 
+	git pull origin branch_name
+	
+Display a log of all activity on the repo	
 	
 	git log
 	
-Choose a commit hash and copy, then
+To revert back to a previous "save point", choose a commit hash (can be copied from the "git log" output), and then
 
-	git checkout hash#
+	git checkout commit_hash
+	
+If any of the commits are deprecated or broken, next step is to revert them:
+
+	git revert commit_hash
