@@ -299,6 +299,10 @@ Pull branch from remote git when you want updates on the cloud to be downloaded 
 
 	git pull origin branch_name
 	
+Fetch all of the origin branch names/info
+
+	git fetch
+	
 Display a log of all activity on the repo	
 	
 	git log
@@ -311,6 +315,14 @@ If any of the commits are deprecated or broken, next step is to revert them:
 
 	git revert commit_hash
 	
+**The typical git workflow goes like this:**
 
+	-> git clone the repo from SSH key
+	-> git checkout new branch for your local working directory, I call it "yourname_update_#"
+	-> Edit code, files, directories
+	-> git add all the relevant files/directories you would like commited
+	-> git commit to create a save point on your local machine, can do this multiple times per day/week
+	-> git push to move the recently commited changes to the cloud
+	-> git pull on different jetson/computer that is on the same branch to update working directory with changes from the cloud
 
 
