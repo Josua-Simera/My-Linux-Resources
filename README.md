@@ -269,7 +269,7 @@ The git checkout command is used to switch between branches in a repository
 	
 Clone the main repo that is currently checked out on to your local system, this is only done once to set up local environment
 	
-	git clone
+	git clone ssh_link or http_link
 
 Get some information about your currently local repo
 	
