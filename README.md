@@ -267,7 +267,7 @@ The git checkout command is used to switch between branches in a repository
 	
 	git checkout main
 	
-Clone the main repo that is currently checked out on to your local system
+Clone the main repo that is currently checked out on to your local system, this is only done once to set up local environment
 	
 	git clone
 
@@ -295,7 +295,7 @@ After a commit, Push branch to remote git to update in the cloud
 	
 	git push origin branch_name
 	
-Pull branch from remote git (wanneer sal mens nou weer dit doen?)
+Pull branch from remote git when you want updates on the cloud to be downloaded to your local branch
 
 	git pull origin branch_name
 	
