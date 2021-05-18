@@ -261,7 +261,7 @@ To check current rules:
 	
 	
 	
-# Git commands
+# Git commands 
 
 The git checkout command is used to switch between branches in a repository
 	
@@ -275,7 +275,7 @@ Get some information about your currently local repo
 	
 	git status
 	
-Get infor about all the branches that currently exist
+Get info about all the branches that currently exist
 	
 	git branch -a
 	
@@ -310,3 +310,7 @@ To revert back to a previous "save point", choose a commit hash (can be copied f
 If any of the commits are deprecated or broken, next step is to revert them:
 
 	git revert commit_hash
+	
+
+
+
