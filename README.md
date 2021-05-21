@@ -315,6 +315,10 @@ If any of the commits are deprecated or broken, next step is to revert them:
 
 	git revert commit_hash
 	
+git revert requires the id of the commit you want to remove keeping it into your history
+
+git reset requires the commit you want to keep, and will consequentially remove anything after that from history.
+	
 **The typical git workflow goes like this:**
 
 	-> git clone the repo from SSH key
