@@ -13,7 +13,7 @@
 
 **Terminal Commands**
 
-All  these *arguments* should be replaced by the relevant name, all other arguments are part of the command.
+All  these * arguments * between asterisks should be replaced by the relevant name, all other arguments are part of the command.
 
 The git checkout command is used to switch between branches in a repository
 	
