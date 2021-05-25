@@ -35,6 +35,10 @@ Create new branch from the main repo that was previously cloned
 	
 	git checkout -b *brance_name*
 	
+Delete a local branch that has been pushed/merged
+
+	git branch -d <branch> (capital "D" force deletes)
+	
 Once changes have been made to a file/directory, they are untracked. Add an untracked file/directory so that it is also updated when the branch is commited
 	
 	git add *directory/file*
