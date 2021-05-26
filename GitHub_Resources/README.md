@@ -15,7 +15,7 @@ More resources here: https://gist.github.com/cferdinandi/ef665330286fd5d7127d
 
 **Terminal Commands**
 
-All  these * arguments * between asterisks should be replaced by the relevant name, all other arguments are part of the command.
+All  these <arguments> between asterisks should be replaced by the relevant name, all other arguments are part of the command.
 
 The git checkout command is used to switch between branches in a repository
 	
@@ -23,7 +23,7 @@ The git checkout command is used to switch between branches in a repository
 	
 Clone the main repo that is currently checked out on to your local system, this is only done once to set up local environment
 	
-	git clone *ssh_link or http_link*
+	git clone <ssh_link or http_link>
 
 Get some information about your currently local repo
 	
@@ -31,19 +31,19 @@ Get some information about your currently local repo
 	
 Get info about all the branches that currently exist
 	
-	git branch -a
+	git branch (suffix with "-a" to show all branches including deleted ones)
 	
 Create new branch from the main repo that was previously cloned
 	
-	git checkout -b *brance_name*
+	git checkout -b <brance_name>
 	
 Delete a local branch that has been pushed/merged
 
-	git branch -d <branch> (capital "D" force deletes)
+	git branch -d <branch> (capital "-D" force deletes)
 	
 Once changes have been made to a file/directory, they are untracked. Add an untracked file/directory so that it is also updated when the branch is commited
 	
-	git add *directory/file*
+	git add <directory/file>
 	git add . (to add everything that has changed)
 
 Commit the changes to the tracked files in the branch you are currently working on. Each commit is a local "save point" in time that can easily be reverted back to
@@ -52,15 +52,15 @@ Commit the changes to the tracked files in the branch you are currently working 
 
 After a commit, Push branch to remote git to update in the cloud
 	
-	git push origin *branch_name*
+	git push origin <branch_name>
 	
 Pull branch from remote git when you want updates on the cloud to be downloaded to your local branch
 
-	git pull origin *branch_name*
+	git pull origin <branch_name>
 	
-Fetch all of the origin branch names/info
+Fetch all of the origin/remote branch names/info, after this git status will show status of current local branch
 
-	git fetch
+	git fetch origin
 	
 Display a log of all activity on the repo	
 	
@@ -68,17 +68,17 @@ Display a log of all activity on the repo
 	
 To revert back to a previous "save point", choose a commit hash (can be copied from the "git log" output), and then
 
-	git checkout *commit_hash*
+	git checkout <commit_hash>
 	
 If any of the commits are deprecated or broken, next step is to revert them:
 
-	git revert *commit_hash*
+	git revert <commit_hash>
 	
 git revert requires the id of the commit you want to remove keeping it into your history
 
 git reset requires the commit you want to keep, and will consequentially remove anything after that from history.
 
-	git reset *commit_hash*
+	git reset <commit_hash>
 	
 
 
