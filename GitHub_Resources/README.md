@@ -1,5 +1,7 @@
 # Git commands & Workflow
 
+More resources here: https://gist.github.com/cferdinandi/ef665330286fd5d7127d
+
 **The typical git workflow goes like this:**
 
 	-> git clone the repo from SSH key
