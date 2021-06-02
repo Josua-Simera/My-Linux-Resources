@@ -61,6 +61,7 @@ Pull branch from remote git when you want updates on the cloud to be downloaded 
 Fetch all of the origin/remote branch names/info, after this git status will show status of current local branch
 
 	git fetch origin
+	git fetch -p (The -p flag means "prune". After fetching, branches which no longer exist on the remote will be deleted)
 	
 Display a log of all activity on the repo	
 	
