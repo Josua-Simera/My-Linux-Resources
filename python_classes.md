@@ -14,21 +14,21 @@ Data attached to an object is called a **field**, do not capitilise the name of 
     user1.first_name = "Blah"
     user1.last_naem = "Bleh"
 
-Different objects from the same class can have varying amounts of unique fields assigned to it. If a field is called for an object that does not have that field assigned to it, an Attribute Error is given
+Different objects from the same class can have varying amounts of unique fields assigned to it. If a field is called for an object that does not have that field assigned to it, an AttributeError is given
 
 To access the data/field in the object of the class User, type the same way it was assigned:
 
     print(user1.first_name)
 
-A separate variable can have exact same name is the field assigned to an object, but will contain a different value if called as part of the object field. Ex:
+A separate variable can have the exact same name as the field assigned to an object, but will contain a different value if called as part of the object field. Ex:
 
     first_name = "Bloo" #will contain "Bloo"
     user.first_name #will contain "Blah" as assigned above
 
 Classes have the following additional features (over dicts for example):
     - Methods - a function inside a class is called a method
-    - Initialization
-    - Help text
+    - Initialization - enabled through the init method
+    - Help text - enabled through the docstring
 
 The init method is a feature that can be added to python classes (init methods in other languages are sometimes called "constructors")
 
