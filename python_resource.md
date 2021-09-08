@@ -56,4 +56,36 @@ First thing to do in init method is store argument values to a field in the newl
     print(user.birthday)
     print(user.first_name)
     print(user.last_name)   # All of the above will run fine, but this will give "AttributeError" because the field was not attached to the object using self
+    
+Can further improve the class by creating help text, help text is define by a docstring, which is written inside tripple quotes, right after the first line of the class name:
+
+    class User:
+        """This is the help text"""
+        def __init__(self,full_name, birthday):
+        
+The help function of a class can be called, which then displays the help text and methods define in the class, and the arguments expected in the init method
+
+    help(User)
+    
+Additional methods can be added within classes, like the init method, the first argument is "self". This method oes not require additional arguments, because all information is captured by fields in the init method, and available by calling field name through self
+
+    class User:
+        def __init__(self,full_name, birthday):
+            self.name = full_name
+            self.birthday = birthday
+
+        def age(self):
+            """Returns the age of user in years"""
+            year = int(self.birthday[0:4])
+            ...etc
+            return int(age_in_years)
+            
+Can test by creating new user object from class. When calling a method within a class, the self keyword is only used when writing the method:
+
+    new_user = User("Bloo Blah", "20200301")
+    print(new_user.age())   # Will print the int returned byt he age() method. 
+    
+    
+        
+    
 
