@@ -1,7 +1,7 @@
 Classes are defined with the "class" keyword, and should always start with a capital letter, ex:
 
     class User:
-            pass
+        pass
   
 Create an **object** or an **instance** of a class, by calling the class name with parentheses:
 
@@ -42,5 +42,18 @@ First thing to do in init method is store argument values to a field in the newl
     class User:
         def __init__(_self_,full_name, birthday):
             _self_.name = full_name
-            _self_.birthday = birthday #"birthday is the value of the argument passed throught the method, "_self_.birthday" is the field that stores the value 
+            _self_.birthday = birthday 
+            
+            # Exract first and last names
+            name.pieces = full_name.split(" ")
+            _self_.first_name = name_pieces[0]    # This defines a new field attributed to the object that self refers to
+            last_name = name_pieces[-1]         # This is a variable, not a field, and the value of this variable only exists until the end of the method init
+            
+"birthday" is the value of the argument passed throught the method, "_self_.birthday" is the field that stores the value. To create user object using the init mathod, and call the field values of that object:
+
+    user = User("Bloo Blah", "20200301")
+    print(user.name)
+    print(user.birthday)
+    print(user.first_name)
+    print(user.last_name)   # All of the above will run fine, but this will give "AttributeError" because the field was not attached to the object using self
 
