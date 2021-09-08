@@ -33,23 +33,23 @@ Classes have the following additional features (over dicts for example):
 The init method is a feature that can be added to python classes (init methods in other languages are sometimes called "constructors")
 
     class User:
-        def __init__(_self_,full_name, birthday):
+        def __init__(self,full_name, birthday):
 
-The init method is called everytime a new instance/object of the class is created. The first argument in the method is "_self_", which is a reference to the new object that has been created
+The init method is called everytime a new instance/object of the class is created. The first argument in the method is "self", which is a reference to the new object that has been created
 
 First thing to do in init method is store argument values to a field in the newly created object:
 
     class User:
-        def __init__(_self_,full_name, birthday):
-            _self_.name = full_name
-            _self_.birthday = birthday 
+        def __init__(self,full_name, birthday):
+            self.name = full_name
+            self.birthday = birthday 
             
             # Exract first and last names
             name.pieces = full_name.split(" ")
-            _self_.first_name = name_pieces[0]    # This defines a new field attributed to the object that self refers to
+            self.first_name = name_pieces[0]    # This defines a new field attributed to the object that self refers to
             last_name = name_pieces[-1]         # This is a variable, not a field, and the value of this variable only exists until the end of the method init
             
-"birthday" is the value of the argument passed throught the method, "_self_.birthday" is the field that stores the value. To create user object using the init mathod, and call the field values of that object:
+"birthday" is the value of the argument passed throught the method, "self.birthday" is the field that stores the value. To create user object using the init mathod, and call the field values of that object:
 
     user = User("Bloo Blah", "20200301")
     print(user.name)
